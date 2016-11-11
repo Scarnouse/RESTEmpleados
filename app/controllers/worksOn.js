@@ -22,12 +22,11 @@ module.exports.newWorksOn = function(req, res){
 
 module.exports.updateWorksOn = function(req, res){
     worksOn = {
-        "n_proj" : parseInt(req.params.n_proj),
-        "n_empl" : req.body.n_empl,
+        "n_proj" : req.params.n_proj,
+        "n_empl" : req.body.n_empl.toString(),
         "start_date_proj" : req.body.start_date_proj,
         "task" : req.body.task
     };
-    console.log(typeof worksOn.n_proj);
     worksOnModel.updateWorksOn(worksOn, function(data){
         if(data && data.length !== 0)
             res.status(201).json(data);

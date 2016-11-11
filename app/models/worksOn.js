@@ -32,7 +32,7 @@ worksOnModel.addWorksOn = function(worksOn, callback){
 //Updating worksOn table
 worksOnModel.updateWorksOn = function(worksOn, callback){
     if(connection){
-        connection.query('CALL WORKS_ON_UPDATE(?, ?, ?, ?)', [worksOn.n_proj, worksOn.n_emple, worksOn.start_date_proj, worksOn.task], function(err){
+        connection.query('CALL WORKS_ON_UPDATE(?, ?, ?, ?)', [worksOn.n_proj, worksOn.n_empl, worksOn.start_date_proj, worksOn.task], function(err, result){
             if(err) throw err;
             callback({"msg" : "WorksOn Updated"});
         });

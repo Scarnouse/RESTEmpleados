@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS EMPLOYEE (
     PRIMARY KEY (n_empl),
     UNIQUE KEY empl_name_unique (name_empl),
     UNIQUE KEY empl_surname_unique (surname_empl),
-    FOREIGN KEY (n_dept) REFERENCES DEPARTMENT(n_dept) ON DELETE CASCADE
+    FOREIGN KEY (n_dept) REFERENCES DEPARTMENT(n_dept)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
