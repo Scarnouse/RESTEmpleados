@@ -39,8 +39,18 @@ module.exports.updateEmployee = function(req, res){
     }
     employeeModel.updateEmployee(employee, function(data){
         if(data && data.lenght !== 0)
-            res.status(201).json({"id" : data});
+            res.status(201).json(data);
         else
             res.status(409).json({"msg" : "Resource not found"});
+    });
+};
+
+module.exports.deleteEmployee = function(req, res){
+    var n_empl = req.params.n_empl;
+    employeeModel.deleteEmployee(n_empl, function(data){
+        if(data && data.lenght !== 0)
+            res.status(200).json(data);
+        else
+            res.status(404).json({"msg" : "Resource not found"});
     });
 };

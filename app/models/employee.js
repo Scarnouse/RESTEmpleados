@@ -50,4 +50,20 @@ employeeModel.updateEmployee = function(employee, callback){
     }
 };
 
+//Deleting an employee
+employeeModel.deleteEmployee = function(n_empl, callback){
+    if(connection){
+        var sql_query = "SELECT * FROM EMPLOYEE WHERE n_empl = " + connection.escape(n_empl);
+        connection.query(sql_query, function(err, row){
+            if(row){
+                var sql_delete = "DELETE FROM EMPLOYEE WHERE n_empl = " + connection.escape(n_empl);
+                connection.query(sql_delete, function(err){
+                    if(err) throw err;
+                    else callback({"msg" : "Employee Deleted"});
+                });
+            }
+        });
+    }
+};
+
 module.exports = employeeModel;
