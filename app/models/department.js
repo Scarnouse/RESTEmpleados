@@ -1,11 +1,4 @@
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-    host : "localhost",
-    user : "root",
-    password : "admin",
-    database : "EMPLOYEES"
-});
+var connection = require("./connectionDB");
 
 var departmentModel = {};
 
