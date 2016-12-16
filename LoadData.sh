@@ -2,6 +2,7 @@
 
 clear
 
+mysql -u root --password=admin < ./CreateDatabase.sql
 mysql -u root --password=admin EMPLOYEES < ./SQLScripts/DepartmentTable.sql
 mysql -u root --password=admin EMPLOYEES < ./SQLScripts/DepartmentUpdate.sql
 mysql -u root --password=admin EMPLOYEES < ./SQLScripts/EmployeeTable.sql
