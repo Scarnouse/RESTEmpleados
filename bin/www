@@ -27,7 +27,6 @@ var server = https.createServer({
     passphrase: 'voodoo'
 },app);
 
-
 /**
  * Listen on provided port, on all network interfaces.
  */
