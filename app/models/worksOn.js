@@ -27,7 +27,8 @@ worksOnModel.updateWorksOn = function(worksOn, callback){
     if(connection){
         connection.query('CALL WORKS_ON_UPDATE(?, ?, ?, ?)', [worksOn.n_proj, worksOn.n_empl, worksOn.start_date_proj, worksOn.task], function(err, result){
             if(err) throw err;
-            callback({"msg" : "WorksOn Updated"});
+            if (result[0][0].code == "200") callback({"msg" : "Works Updated"});
+            else callback({"msg" : "Works Created"});
         });
     }
 };

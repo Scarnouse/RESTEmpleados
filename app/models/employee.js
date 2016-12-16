@@ -36,9 +36,10 @@ employeeModel.addEmployee = function(employee, callback){
 //Updating an employee
 employeeModel.updateEmployee = function(employee, callback){
     if(connection){
-        connection.query('CALL EMPLOYEE_UPDATE(?, ?, ?, ?, ?)', [employee.n_empl, employee.name_empl, employee.surname_empl, employee.start_date_empl, employee.n_dept], function(err){
+        connection.query('CALL EMPLOYEE_UPDATE(?, ?, ?, ?, ?)', [employee.n_empl, employee.name_empl, employee.surname_empl, employee.start_date_empl, employee.n_dept], function(err, result){
             if(err) throw err;
-            callback({"msg" : "Employee Updated"});
+            if (result[0][0].code == "200") callback({"msg" : "Employee Updated"});
+            else callback({"msg" : "Employee Created"});
         });
     }
 };

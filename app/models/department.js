@@ -38,7 +38,8 @@ departmentModel.updateDepartment = function(department, callback){
     if(connection){
         connection.query('CALL DEPARTMENT_UPDATE(?, ?)', [department.n_dept, department.name_dept], function(err, result){
             if(err) throw err;
-            callback({"msg" : "Department Updated"});
+            if (result[0][0].code == "200") callback({"msg" : "Department Updated"});
+            else callback({"msg" : "Department Created"});
         });
     }
 };

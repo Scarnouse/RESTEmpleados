@@ -6,8 +6,10 @@ BEGIN
 IF NOT EXISTS(SELECT * FROM PROJECT where n_proj = new_n_proj)
 THEN INSERT INTO PROJECT(n_proj, name_proj, budget_proj)
 VALUES (new_n_proj, new_name_proj, new_budget_proj);
+SELECT "201" AS code;
 ELSE UPDATE PROJECT SET name_proj = new_name_proj, budget_proj = new_budget_proj
 WHERE n_proj = new_n_proj;
+SELECT "200" AS code;
 END IF;
 END//
 

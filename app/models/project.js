@@ -36,9 +36,10 @@ projectModel.addProject = function(project, callback){
 //Updating a project
 projectModel.updateProject = function(project, callback){
     if(connection){
-        connection.query('CALL PROJECT_UPDATE(?, ?, ?)', [project.n_proj, project.name_proj, project.budget_proj], function(err){
+        connection.query('CALL PROJECT_UPDATE(?, ?, ?)', [project.n_proj, project.name_proj, project.budget_proj], function(err, result){
             if(err) throw err;
-            callback({"msg" : "Project Updated"});
+            if (result[0][0].code == "200") callback({"msg" : "Proyect Updated"});
+            else callback({"msg" : "Proyect Created"});
         });
     }
 };
