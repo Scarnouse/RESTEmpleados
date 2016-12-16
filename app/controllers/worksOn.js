@@ -13,10 +13,12 @@ module.exports.listWhoWorksOnProyect = function(req, res){
 module.exports.newWorksOn = function(req, res){
     var worksOn = req.body;
     worksOnModel.addWorksOn(worksOn, function(data){
-        if(data && data.length !== 0)
-            res.status(201).json(data);
+        if(data.msg === "Project not found")
+            res.status(404).json(data);
+        else if(data.msg === "Employee not found")
+            res.status(404).json(data);
         else
-            res.status(409).json({"msg" : "Existing resource"});
+            res.status(201).json(data);
     });
 };
 

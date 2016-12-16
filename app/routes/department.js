@@ -4,6 +4,7 @@ var ctrlDepartment = require('../controllers/department');
 
 router.get("/", ctrlDepartment.listDepartments);
 router.get("/:n_dept", ctrlDepartment.getDepartment);
+router.get("/employees/:n_dept", ctrlDepartment.getEmployeesByDepartment);
 router.post("/", ctrlDepartment.newDepartment);
 router.put("/:n_dept", ctrlDepartment.updateDepartment);
 router.delete("/:n_dept", ctrlDepartment.deleteDepartment);

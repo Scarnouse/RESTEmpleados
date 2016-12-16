@@ -22,8 +22,8 @@ module.exports.getEmployee = function(req, res){
 module.exports.newEmployee = function(req, res){
     var employee = req.body;
     employeeModel.addEmployee(employee, function(data){
-        if(data && data.length !== 0)
-            res.status(201).json({"id" : data});
+        if(data.msg === "OK")
+            res.status(201).json({"msg" : "Employee created"});
         else
             res.status(409).json({"msg" : "Existing resource"});
     });
@@ -48,7 +48,8 @@ module.exports.updateEmployee = function(req, res){
 module.exports.deleteEmployee = function(req, res){
     var n_empl = req.params.n_empl;
     employeeModel.deleteEmployee(n_empl, function(data){
-        if(data && data.lenght !== 0)
+        console.log(data.msg);
+        if(data.msg !== "Not found")
             res.status(200).json(data);
         else
             res.status(404).json({"msg" : "Resource not found"});

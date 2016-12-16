@@ -22,10 +22,12 @@ module.exports.getProject = function(req, res){
 module.exports.newProject = function(req, res){
     var project = req.body;
     projectModel.addProject(project, function(data){
-        if(data && data.length !== 0)
-            res.status(201).json({"id" : data});
+        if(data.msg === "Project Inserted")
+            res.status(201).json(data);
+        else if(data.msg == "Project number duplicated")
+            res.status(409).json(data); 
         else
-            res.status(409).json({"msg" : "Existing resource"});
+            res.status(409).json(data);
     });
 };
 
@@ -46,8 +48,8 @@ module.exports.updateProject = function(req, res){
 module.exports.deleteProject = function(req, res){
     var n_proj = req.params.n_proj;
     projectModel.deleteProject(n_proj, function(data){
-        if(data && data.length !== 0)
-            res.status(200).json(data);
+        if(data.msg !== "Not found")
+            res.status(200).json({"msg" : "Project deleted"});
         else
             res.status(404).json({"msg" : "Resuource not found"});
     });

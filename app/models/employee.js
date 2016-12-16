@@ -26,10 +26,18 @@ employeeModel.getEmployee = function(n_empl, callback){
 //Creating a new employee
 employeeModel.addEmployee = function(employee, callback){
     if(connection){
-        connection.query('INSERT INTO EMPLOYEE SET ?', employee, function(err, result){
-            if(err) throw err;
-            callback(result.insertId);
+        var sql_query = 'SELECT * FROM EMPLOYEE WHERE n_empl = ' + connection.escape(employee.n_empl);
+        connection.query(sql_query, function(err, row){
+            if(row.length > 0){
+                callback({"msg" : "Duplicated"});
+            } else {
+                connection.query('INSERT INTO EMPLOYEE SET ?', employee, function(err, result){
+                    if(err) throw err;
+                    callback({"msg" : "OK"});
+                }); 
+            }
         });
+        
     }
 };
 
@@ -49,12 +57,14 @@ employeeModel.deleteEmployee = function(n_empl, callback){
     if(connection){
         var sql_query = "SELECT * FROM EMPLOYEE WHERE n_empl = " + connection.escape(n_empl);
         connection.query(sql_query, function(err, row){
-            if(row){
+            if(row.length > 0){
                 var sql_delete = "DELETE FROM EMPLOYEE WHERE n_empl = " + connection.escape(n_empl);
                 connection.query(sql_delete, function(err){
                     if(err) throw err;
                     else callback({"msg" : "Employee Deleted"});
                 });
+            } else {
+                callback({"msg" : "Not found"});
             }
         });
     }

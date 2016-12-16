@@ -15,10 +15,26 @@ worksOnModel.getWhoWorksOnProyect = function(n_proj, callback){
 //Adding employees to project
 worksOnModel.addWorksOn = function(worksOn, callback){
     if(connection){
-        connection.query('INSERT INTO WORKS_ON SET ?', worksOn, function(err){
-            if(err) throw err;
-            callback({"msg" : "Insert Employee in Proyect"});
+        var sql_query_n_proj = "SELECT * FROM PROJECT WHERE n_proj = " + connection.escape(worksOn.n_proj);
+        connection.query(sql_query_n_proj, function(err, rows){
+            
+            if(rows.length > 0){
+                var sql_query_n_empl = "SELECT * FROM EMPLOYEE WHERE n_empl = " + connection.escape(worksOn.n_empl);
+                connection.query(sql_query_n_empl, function (err, row){
+                    if(row.length > 0){
+                        connection.query('INSERT INTO WORKS_ON SET ?', worksOn, function(err){
+                            if(err) throw err;
+                            callback({"msg" : "Inserted Employee in Proyect"});
+                        });
+                    } else {
+                        callback({"msg" : "Employee not found"});
+                    }
+                }) ;              
+            } else {
+                callback({"msg" : "Project not found"});
+            }
         });
+        
     }
 };
 
