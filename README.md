@@ -19,6 +19,7 @@ Action | Method | URL | Params | Body
 ------------ | -------------  | -------------  | -------------  | -------------
 List all departments | GET | /departments |  |  
 List a department by n_dept | GET | /departments | /:n_dept |
+List employees from department | GET | /departments/employees | /:n_dept |
 Create a department | POST | /departments |  | {“n_dept” : 1, “name_dept” : “testdept"}
 Update a department | PUT | /departments | /:n_dept | {“name_dept” : “testdept”}
 Delete a department | DELETE | /departments | /:n_dept |
