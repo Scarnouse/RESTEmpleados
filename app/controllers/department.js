@@ -32,7 +32,8 @@ module.exports.getEmployeesByDepartment = function(req, res){
 module.exports.newDepartment = function(req, res){
     var department = req.body;
    departmentModel.addDepartment(department, function(data){
-        if(data.msg === "OK")
+        console.log(data);
+        if(data.msg === "Department Created")
             res.status(201).json(data);
         else if (data.msg === "Department name duplicated")
             res.status(409).json(data);
