@@ -49,4 +49,21 @@ worksOnModel.updateWorksOn = function(worksOn, callback){
     }
 };
 
+//Deleting worksOn table
+worksOnModel.deleteWorksOn = function(worksOn, callback){
+    if(connection){
+        connection.query("SELECT * FROM WORKS_ON WHERE n_proj = ? AND n_empl = ?", [worksOn.n_proj, worksOn.n_empl], function(err, row){
+            if(err) throw err;
+            if (row.length > 0){
+                connection.query("DELETE FROM WORKS_ON WHERE n_proj = ? AND n_empl = ?", [worksOn.n_proj, worksOn.n_empl], function (err, result){
+                    if (err) throw err;
+                    else callback({"msg" : "Insertion deleted"});
+                });
+            } else {
+                 callback({"msg" : "Insertion not found"});
+            }             
+        })
+    }
+}
+
 module.exports = worksOnModel;
