@@ -51,4 +51,4 @@ Action | Method | URL | Params | Body
 List employees working on a project | GET | /workson | /:n_proj |
 Add an employee to a project | POST | /workson |  | {“n_proj” : 1, “n_empl” : 1, “start_date_proj” : “2016-12-17”, “task” : “testtask”}
 Update employee data of a project | PUT | /workson | /:n_proj | {“n_empl” : 1, “start_date_proj” : “2016-12-17”, “task” : “testtask”}
-Delete employee data of a prohect | DELETE | /workson | /:n_proj | {"n_empl" : 1}
+Delete employee data of a project | DELETE | /workson | /:n_proj | {"n_empl" : 1}
