@@ -13,7 +13,7 @@ Create database, create tables, create user and fill out database
 ./LoadData.sh
 ```
 
-##DEPARTMENT
+## DEPARTMENT
 
 Action | Method | URL | Params | Body
 ------------ | -------------  | -------------  | -------------  | -------------
@@ -24,7 +24,7 @@ Create a department | POST | /departments |  | {“n_dept” : 1, “name_dept�
 Update a department | PUT | /departments | /:n_dept | {“name_dept” : “testdept”}
 Delete a department | DELETE | /departments | /:n_dept |
 
-##EMPLOYEE
+## EMPLOYEE
 
 Action | Method | URL | Params | Body
 ------------ | -------------  | -------------  | -------------  | -------------
@@ -34,7 +34,7 @@ Create an employee | POST | /employees |  | {“n_empl” : 1, “name_empl” :
 Update an employee | PUT | /employees | /:n_empl | {“name_empl” : “nameempl”, “surname_empl” : “surnameempl”, “start_date_empl”: “2016-12-17”, “n_dept” : 1}
 Delete an employee | DELETE | /employees | /:n_empl |
 
-##PROJECT
+## PROJECT
 
 Action | Method | URL | Params | Body
 ------------ | -------------  | -------------  | -------------  | -------------
@@ -44,7 +44,7 @@ Create a project | POST | /projects |  | {“n_proj” : 1, “name_proj” : �
 Update a project | PUT | /projects | /:n_proj | {“name_proj” : “testproj”, “budget_proj” : 2000}
 Delete a project | DELETE | /projects | /:n_proj |
 
-##WORKS_ON
+## WORKS_ON
 
 Action | Method | URL | Params | Body
 ------------ | -------------  | -------------  | -------------  | -------------
